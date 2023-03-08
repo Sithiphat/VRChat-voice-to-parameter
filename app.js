@@ -1,11 +1,14 @@
-const character =require ('./hexReaper.js')
+const character =require ('./masamu.js')
 const express= require ('express')
 const app = express()
 const port = 3000;
 const osc= require('osc');
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const open = require('open');
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -17,7 +20,6 @@ let vrchatOSC = new osc.UDPPort({
 });
 
 vrchatOSC.open();
-open('index.html');
 
 let wordMap =character;
 
